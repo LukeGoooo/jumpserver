@@ -3,6 +3,34 @@
 {% load bootstrap %}
 {% block content %}
 {% include 'nav_cat_bar.html' %}
+
+<style>
+        body {
+            background: #ffffff;
+        }
+        .wrapper-content{
+            padding-top: 0;
+        }
+        .option .ibox-content .box{
+            border-bottom: 1px dashed #ccc;
+            padding: 5px;
+        }
+        .option .ibox-content .box a{
+            text-decoration: none;
+        }
+        .option .ibox-content .box .cl{
+            clear: both;
+         }
+        .option .ibox-content .box .md{ 
+            width: 20%;
+            float: left;
+            height: 36px;
+            line-height: 36px;
+        }
+        .option .ibox-content .box .md:first-child{ 
+            width: 40%;
+        }
+    </style>
 <div class="wrapper wrapper-content animated fadeInRight option">
         <div class="ibox-content">
             <div class="box">
