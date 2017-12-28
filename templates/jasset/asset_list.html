@@ -134,7 +134,7 @@
                                         <a href="{% url 'asset_edit' %}?id={{ asset.id }}" class="btn btn-xs btn-info">编辑</a>
                                         <a value="{{ asset.id }}" class="conn btn btn-xs btn-warning">连接</a>
                                         <a value="{% url 'asset_del' %}?id={{ asset.id }}" class="btn btn-xs btn-danger asset_del">删除</a>
-                                        <a value="{% url 'asset_option' %}" type="button" class="btn btn-xs btn-primary">更多</a>
+                                        <a value="{% url 'asset_option' %}" type="button" class="btn btn-xs btn-primary options">更多</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -348,6 +348,23 @@
             }
         });
     });
+    $(".options").on('click',function(){
+        var url= $(this).attr("value") + '?asset_id_all=' + asset_id_all;
+        parent.layer.open({
+            type: 2,
+            title: 'JumpServer - 批量修改主机',
+            maxmin: true,
+            shift: 'top',
+            border: [2, 0.3, '#1AB394'],
+            shade: [0.5, '#000000'],
+            area: ['800px', '600px'],
+            shadeClose: true,
+            content: url,
+            cancel: function(){
+                location.replace(location.href);
+            }
+        });
+    })
 
     $('.search-btn-excel').unbind('click').bind('click',function(){
         var url= $(this).attr("href");
