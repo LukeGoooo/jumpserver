@@ -4,6 +4,7 @@ from jasset.views import *
 
 urlpatterns = patterns('',
     url(r'^asset/add/$', asset_add, name='asset_add'),
+    url(r'^asset/add/$', asset_log, name='asset_log'),
     url(r"^asset/add_batch/$", asset_add_batch, name='asset_add_batch'),
     url(r'^asset/list/$', asset_list, name='asset_list'),
     url(r'^asset/del/$', asset_del, name='asset_del'),
