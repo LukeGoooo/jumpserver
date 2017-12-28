@@ -13,14 +13,16 @@
             background: #ffffff;
         }
         .option .ibox-content .box{
-            clear: both;
             border-bottom: 1px dashed #ccc;
         }
+        .option .ibox-content .box::after{
+            clear: both;
+         }
         .option .ibox-content .box .md{ 
             width: 20%;
             float: left;
-            height: 32px;
-            line-height: 32px;
+            height: 36px;
+            line-height: 36px;
         }
         .option .ibox-content .box .md:first-child{ 
             width: 40%;
@@ -36,7 +38,15 @@
             <div class="box">
                 <div class="md">服务名称</div>
                 <div class="md">
-                    <button type="button" class="btn btn-success">健康</button>
+                    <input type="button" class="btn btn-sm btn-primary"  name="del_button" value="健康"/>
+                </div>
+                <div class="md">一键重启</div>
+                <div class="md">查看日志</div>
+            </div>
+            <div class="box">
+                <div class="md">服务名称</div>
+                <div class="md"> 
+                    <input type="button" class="btn btn-sm btn-warning"  name="del_button" value="警告"/>
                 </div>
                 <div class="md">一键重启</div>
                 <div class="md">查看日志</div>
@@ -44,14 +54,8 @@
             <div class="box">
                 <div class="md">服务名称</div>
                 <div class="md">
-                    <button type="button" class="btn btn-warning">警告</button>
+                    <input type="button" class="btn btn-sm btn-danger"  name="del_button" value="危险"/>
                 </div>
-                <div class="md">一键重启</div>
-                <div class="md">查看日志</div>
-            </div>
-            <div class="box">
-                <div class="md">服务名称</div>
-                <div class="md"><button type="button" class="btn btn-danger">危险</button></div>
                 <div class="md">一键重启</div>
                 <div class="md">查看日志</div>
             </div>
