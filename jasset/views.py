@@ -506,7 +506,7 @@ def asset_option(request):
             if alert_list:
                 recode_name = unicode(name) + ' - ' + u'批量'
                 AssetRecord.objects.create(asset=asset, username=recode_name, content=alert_list)
-        return my_render('jasset/asset_update_status.html', locals(), request)
+        return my_render('jasset/asset_option.html', locals(), request)
 
     return my_render('jasset/asset_option.html', locals(), request)
 
