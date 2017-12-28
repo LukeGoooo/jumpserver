@@ -134,7 +134,7 @@
                                         <a href="{% url 'asset_edit' %}?id={{ asset.id }}" class="btn btn-xs btn-info">编辑</a>
                                         <a value="{{ asset.id }}" class="conn btn btn-xs btn-warning">连接</a>
                                         <a value="{% url 'asset_del' %}?id={{ asset.id }}" class="btn btn-xs btn-danger asset_del">删除</a>
-                                        <a value="{% url 'asset_edit_batch' %}" type="button" class="btn btn-xs btn-primary asset_del">更多</a>
+                                        <a value="{% url 'asset_option' %}" type="button" class="btn btn-xs btn-primary asset_del">更多</a>
                                     </td>
                                 </tr>
                             {% endfor %}
