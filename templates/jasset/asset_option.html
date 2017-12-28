@@ -4,7 +4,7 @@
 {% block content %}
 {% include 'nav_cat_bar.html' %}
 
-<style>
+    <style>
         .wrapper-content{
             padding-top: 0;
         }
@@ -28,62 +28,49 @@
             width: 40%;
         }
     </style>
-    <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
-                <div class="col-sm-10">
-                    <div class="ibox float-e-margins">
-                        <div id="ibox-content" class="ibox-title">
-                            <h5> 填写资产基本信息 </h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class="ibox-content">
-                                <div class="box">
-                                    <div class="md">服务名称</div>
-                                    <div class="md">
-                                        <input type="button" class="btn btn-sm btn-primary"  name="del_button" value="健康"/>
-                                    </div>
-                                    <div class="md"><a href="javascipt:void(0);">一键重启</a></div>
-                                    <div class="md"><a href="{% url 'asset_log' %}" class="btn btn-sm btn-primary ">查看日志</a></div>
-                                    <div class="cl"></div>
-                                </div>
-                                <div class="box">
-                                    <div class="md">服务名称</div>
-                                    <div class="md"> 
-                                        <input type="button" class="btn btn-sm btn-warning"  name="del_button" value="警告"/>
-                                    </div>
-                                    <div class="md"><a href="javascipt:void(0);">一键重启</a></div>
-                                    <div class="md"><a href="{% url 'asset_log' %}" class="btn btn-sm btn-primary ">查看日志</a></div>
-                                    <div class="cl"></div>
-                                </div>
-                                <div class="box">
-                                    <div class="md">服务名称</div>
-                                    <div class="md">
-                                        <input type="button" class="btn btn-sm btn-danger"  name="del_button" value="危险"/>
-                                    </div>
-                                    <div class="md"><a href="javascipt:void(0);">一键重启</a></div>
-                                    <div class="md"><a href="{% url 'asset_log' %}" class="btn btn-sm btn-primary ">查看日志</a></div>
-                                    <div class="cl"></div>
-                                </div>
-                            </div>
-                    </div>
+<div class="wrapper wrapper-content animated fadeInRight option">
+        <div class="ibox-content">
+            <div class="box">
+                <div class="md">服务名称</div>
+                <div class="md">
+                    <input type="button" class="btn btn-sm btn-primary"  name="del_button" value="健康"/>
                 </div>
+                <div class="md"><a href="javascipt:void(0);">一键重启</a></div>
+                <div class="md"><a href="{% url 'asset_log' %}" class="btn btn-sm btn-primary ">查看日志</a></div>
+                <div class="cl"></div>
+            </div>
+            <div class="box">
+                <div class="md">服务名称</div>
+                <div class="md"> 
+                    <input type="button" class="btn btn-sm btn-warning"  name="del_button" value="警告"/>
+                </div>
+                <div class="md"><a href="javascipt:void(0);">一键重启</a></div>
+                <div class="md"><a href="{% url 'asset_log' %}" class="btn btn-sm btn-primary ">查看日志</a></div>
+                <div class="cl"></div>
+            </div>
+            <div class="box">
+                <div class="md">服务名称</div>
+                <div class="md">
+                    <input type="button" class="btn btn-sm btn-danger"  name="del_button" value="危险"/>
+                </div>
+                <div class="md"><a href="javascipt:void(0);">一键重启</a></div>
+                <div class="md"><a href="{% url 'asset_log' %}" class="btn btn-sm btn-primary ">查看日志</a></div>
+                <div class="cl"></div>
             </div>
         </div>
 
+        <script>
+            $(document).ready(function () {
+
+            });
+        </script>
+        {% endblock content %}
+
 {% block self_footer_js %}
 <script>
+    $(document).ready(function () {
 
+    });
 </script>
-
+{% endblock content %}
 {% endblock %}
