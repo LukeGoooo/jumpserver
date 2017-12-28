@@ -477,7 +477,7 @@ def asset_edit_batch(request):
     return my_render('jasset/asset_edit_batch.html', locals(), request)
 
 @require_role('admin')
-def asset_add(request):
+def asset_option(request):
     """
     Asset add view
     添加资产
