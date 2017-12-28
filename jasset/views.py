@@ -478,48 +478,7 @@ def asset_edit_batch(request):
 
 @require_role('admin')
 def asset_option(request):
-    """
-    Asset add view
-    添加资产
-    """
-    header_title, path1, path2 = u'添加资产', u'资产管理', u'添加资产'
-    asset_group_all = AssetGroup.objects.all()
-    af = AssetForm()
-    default_setting = get_object(Setting, name='default')
-    default_port = default_setting.field2 if default_setting else ''
-    if request.method == 'POST':
-        af_post = AssetForm(request.POST)
-        ip = request.POST.get('ip', '')
-        hostname = request.POST.get('hostname', '')
-
-        is_active = True if request.POST.get('is_active') == '1' else False
-        use_default_auth = request.POST.get('use_default_auth', '')
-        try:
-            if Asset.objects.filter(hostname=unicode(hostname)):
-                error = u'该主机名 %s 已存在!' % hostname
-                raise ServerError(error)
-            if len(hostname) > 54:
-                error = u"主机名长度不能超过53位!"
-                raise ServerError(error)
-        except ServerError:
-            pass
-        else:
-            if af_post.is_valid():
-                asset_save = af_post.save(commit=False)
-                if not use_default_auth:
-                    password = request.POST.get('password', '')
-                    password_encode = CRYPTOR.encrypt(password)
-                    asset_save.password = password_encode
-                if not ip:
-                    asset_save.ip = hostname
-                asset_save.is_active = True if is_active else False
-                asset_save.save()
-                af_post.save_m2m()
-
-                msg = u'主机 %s 添加成功' % hostname
-            else:
-                esg = u'主机 %s 添加失败' % hostname
-
+    
     return my_render('jasset/option.html', locals(), request)
 
 @require_role('admin')
