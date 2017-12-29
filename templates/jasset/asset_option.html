@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="ibox-content option">
+                <div class="ibox-content">
                     <div class="box">
                         <div class="md">服务名称</div>
                         <div class="md">
@@ -84,34 +84,34 @@
 
 {% block self_footer_js %}
 <script>
-    $(document).ready(function () {
-        console.log(getQueryString('id'));
-    });
-    /**
-     * 重启
-     **/
-    function reboot(){
-        var r=confirm("确认重启？");
-        if (r==true){
-            var url="";
-            var parms={};
-            $.post(url,parms,function(data,status){
-                alert("数据：" + data + "\n状态：" + status);
-            });
-        }else{
+        $(document).ready(function () {
+            console.log(getQueryString('id'));
+        });
+        /**
+         * 重启
+         **/
+        function reboot() {
+            var r = confirm("确认重启？");
+            if (r == true) {
+                var url = "";
+                var parms = {};
+                $.post(url, parms, function (data, status) {
+                    alert("数据：" + data + "\n状态：" + status);
+                });
+            } else {
+            }
         }
-    }
-    /**
-     * 获取参数
-     **/ 
-     function getQueryString(name) {
-        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-        var r = window.location.search.substr(1).match(reg);
-        if (r != null) {
-            return unescape(r[2]);
+        /**
+         * 获取参数
+         **/
+        function getQueryString(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
         }
-        return null;
-    }
 </script>
 
 {% endblock %}

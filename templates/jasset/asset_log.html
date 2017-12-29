@@ -64,62 +64,65 @@
 
 {% block self_footer_js %}
 <script>
-    var originalData="";
-    $(document).ready(function () {
-        console.log(getQueryString('id'));
-        $.get("https://raw.githubusercontent.com/MuFengGit/Revise-Related/master/Amess/CMSTOP_Test/README.md", function(result){
-            $(".lo").html(result);
-            originalData=$(".lo").html();
+        var originalData = "";
+        $(document).ready(function () {
+            console.log(getQueryString('id'));
+            $.get("https://raw.githubusercontent.com/MuFengGit/Revise-Related/master/Amess/CMSTOP_Test/README.md", function (result) {
+                $(".lo").html(result);
+                originalData = $(".lo").html();
+            });
         });
-    });
-    /**
-     * 搜索
-     **/ 
-    function search(){
-        var searchKey= $("#keyword").val();
-        var searchArr= searchKey.replace(/，/g,",").split(',');//替换中文'，'
-        searchArr=unique(searchArr);
-        var outputStr=originalData;
-        if(searchKey && ''!= searchKey.trim()){
-            for(var i=0;i<searchArr.length;i++){
-                if(''!=searchArr[i]){
-                    var values=outputStr.split(searchArr[i]);
-                    outputStr=values.join('<span class="bg">' + searchArr[i] + "</span>")
+        /**
+         * 搜索
+         **/
+        function search() {
+            var searchKey = $("#keyword").val();
+            var searchArr = searchKey.replace(/，/g, ",").split(',');//替换中文'，'
+            searchArr = unique(searchArr);
+            var outputStr = originalData;
+            if (searchKey && '' != searchKey.trim()) {
+                for (var i = 0; i < searchArr.length; i++) {
+                    if ('' != searchArr[i]) {
+                        var values = outputStr.split(searchArr[i]);
+                        outputStr = values.join('<span class="bg">' + searchArr[i] + "</span>")
+                    }
                 }
+                $('.lo').html(outputStr);
+            } else {
+                $('.lo').html(originalData);
             }
-            $('.lo').html(outputStr);
-        }else{
-            $('.lo').html(originalData);
         }
-    }
-    $('#keyword').bind('keyup', function(event) {
-        if (event.keyCode == "13") {
-            search();
+        /**
+         * 绑定回车搜索
+         **/
+        $('#keyword').bind('keyup', function (event) {
+            if (event.keyCode == "13") {
+                search();
+            }
+        });
+        /**
+         * 获取参数
+         **/
+        function getQueryString(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
         }
-    });
-    /**
-     * 获取参数
-     **/ 
-    function getQueryString(name) {
-        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-        var r = window.location.search.substr(1).match(reg);
-        if (r != null) {
-            return unescape(r[2]);
+        /**
+         * 数组去重
+         **/
+        function unique(array) {
+            var r = [];
+            for (var i = 0, l = array.length; i < l; i++) {
+                for (var j = i + 1; j < l; j++)
+                    if (array[i] === array[j]) j = ++i;
+                r.push(array[i]);
+            }
+            return r;
         }
-        return null;
-    }
-    /**
-     * 数组去重
-     **/
-    function unique(array){
-        var r = [];
-        for(var i = 0, l = array.length; i < l; i++) {
-            for(var j = i + 1; j < l; j++)
-            if (array[i] === array[j]) j = ++i;
-            r.push(array[i]);
-        }
-        return r;
-    }
 </script>
 
 {% endblock %}
