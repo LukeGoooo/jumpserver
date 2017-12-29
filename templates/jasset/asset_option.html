@@ -86,6 +86,11 @@
 <script>
         $(document).ready(function () {
             console.log(getQueryString('id'));
+            $.get("https://raw.githubusercontent.com/MuFengGit/jumpserver/master/static/data/log.txt",{"id":1}, function (result) {
+                console.log(result)
+            }).error(function(err){
+                console.log(err);
+            });
         });
         /**
          * 重启
