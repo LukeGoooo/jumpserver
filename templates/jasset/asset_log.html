@@ -41,7 +41,7 @@
                     <div class="searchs">
                         <div class="" style="float: right">
                             <div class="input-group" style="width: 360px;">
-                                <input type="text" class="form-control input-sm" id="keyword" name="keyword" value="" placeholder="Search">
+                                <input type="text" class="form-control input-sm" id="keyword" name="keyword" value="" placeholder="请输入关键字搜索(用','组合)">
                                 <div class="input-group-btn">
                                     <button id="search_btn" type="submit" class="btn btn-sm btn-primary" onclick="search()">
                                         -搜索-
@@ -65,8 +65,10 @@
 <script>
     $(document).ready(function () {
         console.log(getQueryString('id'));
+        var originalData="";
         $.get("https://raw.githubusercontent.com/MuFengGit/Revise-Related/master/Amess/CMSTOP_Test/README.md", function(result){
             $(".lo").html(result);
+            originalData=$(".lo").html();
         });
     });
     /**
@@ -82,9 +84,14 @@
     }
     function search(){
         var searchKey= $("#keyword").val();
+        var searchArr= searchKey.replace(/，/g,",").split(',');
+        var outputStr=originalData;
         if(searchKey && ''!= searchKey.trim()){
-            var values = $('.lo').html().split(searchKey);
-            $('.lo').html(values.join('<span class="bg">' + searchKey + "</span>"))
+            for(var i=0;i<searchArr.length;i++){
+                var values=outputStr.split(searchArr[i]);
+                outputStr=values.join('<span class="bg">' + searchArr[i] + "</span>")
+            }
+            $('.lo').html(outputStr);
         }
     }
 </script>
