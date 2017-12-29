@@ -84,7 +84,7 @@
         var searchKey= $("#keyword").val();
         if(searchKey && ''!= searchKey.trim()){
             var values = $('.lo').html().split(searchKey);
-            $('.lo').html(values.join('<span class="bg">' + this.searchKey + "</span>"))
+            $('.lo').html(values.join('<span class="bg">' + searchKey + "</span>"))
         }
     }
 </script>
