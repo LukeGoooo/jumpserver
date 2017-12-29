@@ -52,7 +52,7 @@
                         <div class="md">
                             <input type="button" class="btn btn-sm btn-primary"  name="del_button" value="健康"/>
                         </div>
-                        <div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-primary ">一键重启</a></div>
+                        <div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-primary" onclick="reboot()">一键重启</a></div>
                         <div class="md"><a href="{% url 'asset_log' %}" class="btn btn-sm btn-primary ">查看日志</a></div>
                         <div class="cl"></div>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="md"> 
                             <input type="button" class="btn btn-sm btn-warning"  name="del_button" value="警告"/>
                         </div>
-                        <div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-primary ">一键重启</a></div>
+                        <div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-primary" onclick="reboot()">一键重启</a></div>
                         <div class="md"><a href="{% url 'asset_log' %}" class="btn btn-sm btn-primary ">查看日志</a></div>
                         <div class="cl"></div>
                     </div>
@@ -70,7 +70,7 @@
                         <div class="md">
                             <input type="button" class="btn btn-sm btn-danger"  name="del_button" value="危险"/>
                         </div>
-                        <div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-primary ">一键重启</a></div>
+                        <div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-primary" onclick="reboot()">一键重启</a></div>
                         <div class="md"><a href="{% url 'asset_log' %}" class="btn btn-sm btn-primary ">查看日志</a></div>
                         <div class="cl"></div>
                     </div>
@@ -87,6 +87,20 @@
     $(document).ready(function () {
         console.log(getQueryString('id'));
     });
+    /**
+     * 重启
+     **/
+    function reboot(){
+        var r=confirm("确认重启？");
+        if (r==true){
+            var url="";
+            var parms={};
+            $.post(url,parms,function(data,status){
+                alert("数据：" + data + "\n状态：" + status);
+            });
+        }else{
+        }
+    }
     /**
      * 获取参数
      **/ 
