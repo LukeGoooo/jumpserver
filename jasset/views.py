@@ -172,7 +172,7 @@ def asset_log(request):
     Asset add view
     查看日志
     """
-    header_title, path1, path2 = u'查看日志', u'资产管理', u'添加资产'
+    header_title, path1, path2 = u'查看日志', u'资产管理', u'查看日志'
     asset_group_all = AssetGroup.objects.all()
     af = AssetForm()
     default_setting = get_object(Setting, name='default')
@@ -482,7 +482,7 @@ def asset_option(request):
     Asset add view
     服务信息
     """
-    header_title, path1, path2 = u'服务信息', u'资产管理', u'添加资产'
+    header_title, path1, path2 = u'服务信息', u'资产管理', u'服务信息'
     af = AssetForm()
     name = request.user.username
     asset_group_all = AssetGroup.objects.all()
