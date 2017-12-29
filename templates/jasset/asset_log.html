@@ -82,8 +82,10 @@
         var outputStr=originalData;
         if(searchKey && ''!= searchKey.trim()){
             for(var i=0;i<searchArr.length;i++){
-                var values=outputStr.split(searchArr[i]);
-                outputStr=values.join('<span class="bg">' + searchArr[i] + "</span>")
+                if(''!=searchArr[i]){
+                    var values=outputStr.split(searchArr[i]);
+                    outputStr=values.join('<span class="bg">' + searchArr[i] + "</span>")
+                }
             }
             $('.lo').html(outputStr);
         }else{
