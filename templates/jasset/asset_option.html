@@ -94,6 +94,11 @@
                     name:'test',
                     status:'warning',
                     id:1001,
+                });
+                result.data.push({
+                    name:'test2',
+                    status:'danger',
+                    id:1002,
                 })
                 for(var i=0;i<result.data.length;i++){
                     var _name='<div class="box"><div class="md">'+result.data[i].name+'</div>';
@@ -112,8 +117,8 @@
                         _status='<div class="md">- -</div>'
                             break;
                     }
-                    var _reboot='<div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-primary" onclick="reboot()">一键重启</a></div>';
-                    var _log='<div class="md"><a href='+"{% url 'asset_log' %}" +'class="btn btn-sm btn-primary ">查看日志</a></div><div class="cl"></div></div>'
+                    var _reboot='<div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-danger" onclick="reboot('+result.data[i].id+')">一键重启</a></div>';
+                    var _log='<div class="md"><a href='+"{% url 'asset_log' %}?id="+result.data[i].id +'class="btn btn-sm btn-primary ">查看日志</a></div><div class="cl"></div></div>'
                     installStr+=_name+_status+_reboot+_log;
                 }
                 $('.infos').html(installStr);
@@ -122,7 +127,8 @@
         /**
          * 重启
          **/
-        function reboot() {
+        function reboot(id) {
+            console.log("+++"+id);
             var r = confirm("确认重启？");
             if (r == true) {
                 var url = "";
