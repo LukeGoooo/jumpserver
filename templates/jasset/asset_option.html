@@ -113,7 +113,7 @@
                             break;
                     }
                     var _reboot='<div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-primary" onclick="reboot()">一键重启</a></div>';
-                    var _log='<div class="md"><a href="" class="btn btn-sm btn-primary ">查看日志</a></div><div class="cl"></div></div>'
+                    var _log='<div class="md"><a href="{% url \'asset_log\' %}" class="btn btn-sm btn-primary ">查看日志</a></div><div class="cl"></div></div>'
                     installStr+=_name+_status+_reboot+_log;
                 }
                 $('.infos').html(installStr);
