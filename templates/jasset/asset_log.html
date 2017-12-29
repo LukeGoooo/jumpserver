@@ -3,6 +3,11 @@
 {% load bootstrap %}
 {% block content %}
 {% include 'nav_cat_bar.html' %}
+<style>
+    .searchs{
+        width: 100%;
+    }
+</style>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-sm-12">
@@ -23,7 +28,23 @@
                 </div>
 
                 <div class="ibox-content">
-                    hello 
+                    <div class="searchs">
+                        <div class="" style="float: right">
+                                <form id="search_form" method="get" action="" class="pull-right mail-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm" id="keyword" name="keyword" value="" placeholder="Search">
+                                        <div class="input-group-btn">
+                                            <button id="search_btn" type="submit" class="btn btn-sm btn-primary">
+                                                -搜索-
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                     </div>
+                    <div class="log">
+
+                    </div> 
                 </div>
             </div>
         </div>
