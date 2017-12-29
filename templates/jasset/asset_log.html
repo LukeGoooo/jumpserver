@@ -52,7 +52,7 @@
                             </div>
                      </div>
                     <div class="log">
-asdhfalksdfjlasjdflkasjdflkajasdhfalksdfjlasjdflkasjdflkajasdhfalksdfjlasjdflkasjdflkajasdhfalksdfjlasjdflkasjdflkajasdhfalksdfjlasjdflkasjdflkajasdhfalksdfjlasjdflkasjdflkajasdhfalksdfjlasjdflkasjdflkajsafowjefoajskljdfoiajsfoijfkjasidfjklsajdflkaweio
+                        <pre class="lo"></pre>
                     </div> 
                     <div class="clb"></div>
                 </div>
@@ -66,6 +66,9 @@ asdhfalksdfjlasjdflkasjdflkajasdhfalksdfjlasjdflkasjdflkajasdhfalksdfjlasjdflkas
 <script>
     $(document).ready(function () {
         console.log(getQueryString('id'));
+        $.get("https://raw.githubusercontent.com/MuFengGit/Revise-Related/master/Amess/CMSTOP_Test/README.md", function(result){
+            $(".lo").html(result);
+        });
     });
     /**
      * 获取参数
