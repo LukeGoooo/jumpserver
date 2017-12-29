@@ -67,7 +67,7 @@
         var originalData = "";
         $(document).ready(function () {
             console.log(getQueryString('id'));
-            $.get("https://raw.githubusercontent.com/MuFengGit/Revise-Related/master/Amess/CMSTOP_Test/README.md", function (result) {
+            $.get("https://raw.githubusercontent.com/MuFengGit/jumpserver/master/static/data/log.txt", function (result) {
                 $(".lo").html(result);
                 originalData = $(".lo").html();
             });
