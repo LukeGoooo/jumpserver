@@ -63,9 +63,9 @@
 
 {% block self_footer_js %}
 <script>
+    var originalData="";
     $(document).ready(function () {
         console.log(getQueryString('id'));
-        var originalData="";
         $.get("https://raw.githubusercontent.com/MuFengGit/Revise-Related/master/Amess/CMSTOP_Test/README.md", function(result){
             $(".lo").html(result);
             originalData=$(".lo").html();
