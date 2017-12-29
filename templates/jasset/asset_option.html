@@ -32,7 +32,7 @@
         <div class="col-sm-10">
             <div class="ibox float-e-margins">
                 <div id="ibox-content" class="ibox-title">
-                    <h5> 填写资产基本信息 </h5>
+                    <h5> 服务信息 </h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -85,8 +85,19 @@
 {% block self_footer_js %}
 <script>
     $(document).ready(function () {
-
+        console.log(getQueryString('id'));
     });
+    /**
+     * 获取参数
+     **/ 
+     function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
 </script>
 
 {% endblock %}
