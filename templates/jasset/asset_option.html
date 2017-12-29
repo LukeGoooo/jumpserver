@@ -96,11 +96,11 @@
                     id:1001,
                 })
                 for(var i=0;i<result.data.length;i++){
-                    var _name='<div class="md">'+result.data[i].name+'</div>';
+                    var _name='<div class="box"><div class="md">'+result.data[i].name+'</div>';
                     var _status="";
                     switch (result.data[i].status) {
                         case 'primary':
-                        _status='<div class="box"><div class="md"><input type="button" class="btn btn-sm btn-primary"  name="del_button" value="健康"/></div>'
+                        _status='<div class="md"><input type="button" class="btn btn-sm btn-primary"  name="del_button" value="健康"/></div>'
                             break;
                         case 'warning':
                         _status='<div class="md"><input type="button" class="btn btn-sm btn-warning"  name="del_button" value="警告"/></div>'
