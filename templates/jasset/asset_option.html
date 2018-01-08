@@ -88,7 +88,18 @@
             console.log(getQueryString('group'));
             $.get("http://10.2.7.230:13380/api/monitor/checkstatus?group="+getQueryString('group'), function (result) {
                 var installStr='';
-                debugger;
+                var responseText={};
+                var list={};
+                try {
+                    responseText = JSON.parse(responseText);
+                } catch (e) {
+                    responseText = {};
+                }
+                if(responseText && responseText.Code && 200 == responseText.Code){
+                
+                }else{
+                    return;
+                }
                 result={};
                 result.data=[];
                 result.data.push({
