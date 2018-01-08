@@ -99,7 +99,7 @@
                 if(responseText && responseText.Code && 200 == responseText.Code){
                     for(var Key in responseText.Message){
                         responseText.data.push({
-                            name:key,
+                            name:Key,
                             status:responseText.Message[Key]
                         })
                     }
