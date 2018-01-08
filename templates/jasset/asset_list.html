@@ -163,7 +163,7 @@
 {% block self_footer_js %}
 <script>
     $(document).ready(function(){
-        if(getQueryString("group")==""){
+        if(""==getQueryString("group") || null==getQueryString("group")){
             $("#hostInfo").css("display","none");
         }else{
             var oldUrl = $("#hostInfo").attr('href');
