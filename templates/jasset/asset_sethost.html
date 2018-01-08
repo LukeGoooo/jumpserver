@@ -53,7 +53,7 @@
                             <label>
                                 <select name="ips" class="form-control m-b input-sm" data-hostname="nlp" onchange="change_ip()">
                                     <option value="">请选择IP</option>
-                                    <option value="192.168.1.25" selected> 192.168.1.25</option>
+                                    <option value="192.168.1.25" > 192.168.1.25</option>
                                     <option value="114.55.56.6"> 114.55.56.6</option>
                                 </select>
                             </label>
@@ -66,7 +66,7 @@
                             <label>
                                 <select name="ips" class="form-control m-b input-sm" data-hostname="elasticsearch" onchange="change_ip()">
                                     <option value="">请选择IP</option>
-                                    <option value="192.168.1.25" selected> 192.168.1.25</option>
+                                    <option value="192.168.1.25" > 192.168.1.25</option>
                                     <option value="114.55.56.6"> 114.55.56.6</option>
                                 </select>
                             </label>
@@ -79,7 +79,7 @@
                             <label>
                                 <select name="ips" class="form-control m-b input-sm" data-hostname="vms" onchange="change_ip()">
                                     <option value="">请选择IP</option>
-                                    <option value="192.168.1.25" selected> 192.168.1.25</option>
+                                    <option value="192.168.1.25" > 192.168.1.25</option>
                                     <option value="114.55.56.6"> 114.55.56.6</option>
                                 </select>
                             </label>
@@ -92,7 +92,7 @@
                             <label>
                                 <select name="ips" class="form-control m-b input-sm" data-hostname="redis" onchange="change_ip()">
                                     <option value="">请选择IP</option>
-                                    <option value="192.168.1.25" selected> 192.168.1.25</option>
+                                    <option value="192.168.1.25" > 192.168.1.25</option>
                                     <option value="114.55.56.6"> 114.55.56.6</option>
                                 </select>
                             </label>
@@ -160,7 +160,7 @@
          * Ip下拉
          **/ 
         function change_ip(){
-            
+            console.log($(this).val());
         }
         /**
          * 重启
