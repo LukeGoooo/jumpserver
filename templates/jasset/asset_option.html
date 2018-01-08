@@ -85,9 +85,10 @@
 {% block self_footer_js %}
 <script>
         $(document).ready(function () {
-            console.log(getQueryString('id'));
-            $.get("https://raw.githubusercontent.com/MuFengGit/jumpserver/master/static/data/log.txt",{"id":1}, function (result) {
+            console.log(getQueryString('group'));
+            $.get("10.2.7.230:13380/api/monitor/checkstatus?group="+getQueryString('group'), function (result) {
                 var installStr='';
+                debugger;
                 result={};
                 result.data=[];
                 result.data.push({
