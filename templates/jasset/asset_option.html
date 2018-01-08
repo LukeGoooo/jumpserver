@@ -86,7 +86,7 @@
 <script>
         $(document).ready(function () {
             console.log(getQueryString('group'));
-            $.get("10.2.7.230:13380/api/monitor/checkstatus?group="+getQueryString('group'), function (result) {
+            $.get("http://10.2.7.230:13380/api/monitor/checkstatus?group="+getQueryString('group'), function (result) {
                 var installStr='';
                 debugger;
                 result={};
