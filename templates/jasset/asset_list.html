@@ -81,7 +81,7 @@
                                 </select>
                             </label>
 
-                            <a href="{% url 'asset_option' %}?id={{ asset.id }}" type="button" class="btn btn-sm btn-primary">查看主机</a>
+                            <a href="{% url 'asset_option' %}?id={{ asset.id }}" id="hostInfo" type="button" class="btn btn-sm btn-primary">查看主机</a>
                             
                         </div>
 
@@ -163,6 +163,9 @@
 {% block self_footer_js %}
 <script>
     $(document).ready(function(){
+        if(getQueryString("group")==""){
+            $("#hostInfo").css("display","none");
+        }
         $('.asset_del').click(function(){
             var row = $(this).closest('tr');
             if (confirm("确定删除?")) {
@@ -279,7 +282,17 @@
             return false
         });
     });
-
+    /**
+     * 获取参数
+     **/
+        function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
     function windowOpen(a){
         var new_url = $(a).attr('href');
         var hostname = $(a).attr('value');
