@@ -167,8 +167,10 @@
             $("#hostInfo").css("display","none");
             $("#hostSet").css("display","none");
         }else{
-            var oldUrl = $("#hostInfo").attr('href');
-            $("#hostInfo").attr('href',oldUrl+"?group="+getQueryString("group"))
+            var oldinfoUrl = $("#hostInfo").attr('href');
+            var oldsetUrl = $("#hostSet").attr('href');
+            $("#hostInfo").attr('href',oldinfoUrl+"?group="+getQueryString("group"))
+            $("#hostSet").attr('href',oldsetUrl+"?group="+getQueryString("group"))
         }
         $('.asset_del').click(function(){
             var row = $(this).closest('tr');

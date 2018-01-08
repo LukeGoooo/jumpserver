@@ -32,7 +32,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div id="ibox-content" class="ibox-title">
-                    <h5> 服务信息 </h5>
+                    <h5> 服务设置 </h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -60,7 +60,7 @@
 <script>
         $(document).ready(function () {
             console.log(getQueryString('group'));
-            $.get("http://10.2.7.230:13380/api/monitor/checkstatus?group="+getQueryString('group'), function (result) {
+            $.get("http://10.2.7.230:13380/api/monitor/getservices??group="+getQueryString('group'), function (result) {
                 var installStr='';
                 var responseText={};
                 var list={};
