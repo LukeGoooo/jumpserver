@@ -452,14 +452,14 @@ def asset_option(request):
     return my_render('jasset/asset_option.html', locals(), request)
 
 @require_role('admin')
-def asset_set(request):
+def asset_sethost(request):
     """
     Asset add view
     服务设置
     """
     header_title, path1, path2 = u'服务设置', u'资产管理', u'服务设置'
 
-    return my_render('jasset/asset_set.html', locals(), request)
+    return my_render('jasset/asset_sethost.html', locals(), request)
 
 @require_role('admin')
 def asset_detail(request):
