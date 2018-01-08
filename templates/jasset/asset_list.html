@@ -81,7 +81,7 @@
                                 </select>
                             </label>
 
-                            <a href="{% url 'asset_option' %}?id={{ asset.id }}" id="hostInfo" type="button" class="btn btn-sm btn-primary">查看主机</a>
+                            <a href="{% url 'asset_option' %}" id="hostInfo" type="button" class="btn btn-sm btn-primary">查看主机</a>
                             
                         </div>
 
@@ -165,6 +165,9 @@
     $(document).ready(function(){
         if(getQueryString("group")==""){
             $("#hostInfo").css("display","none");
+        }else{
+            var oldUrl = $("#hostInfo").attr('href');
+            $("#hostInfo").attr('href',oldUrl+"?group="+getQueryString("group"))
         }
         $('.asset_del').click(function(){
             var row = $(this).closest('tr');
