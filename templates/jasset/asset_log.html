@@ -66,7 +66,7 @@
 <script>
         var originalData = "";
         $(document).ready(function () {
-            console.log(getQueryString('id'));
+            console.log(getQueryString('name'));
             $.get("https://raw.githubusercontent.com/MuFengGit/jumpserver/master/static/data/log.txt", function (result) {
                 $(".lo").html(result);
                 originalData = $(".lo").html();
