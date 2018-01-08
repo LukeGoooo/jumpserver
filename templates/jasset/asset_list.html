@@ -80,6 +80,9 @@
                                     {% endfor %}
                                 </select>
                             </label>
+
+                            <a href="{% url 'asset_option' %}?id={{ asset.id }}" type="button" class="btn btn-xs btn-primary">更多</a>
+                            
                         </div>
 
                         <div class="col-sm-4" style="padding-right: 0">
@@ -134,7 +137,6 @@
                                         <a href="{% url 'asset_edit' %}?id={{ asset.id }}" class="btn btn-xs btn-info">编辑</a>
                                         <a value="{{ asset.id }}" class="conn btn btn-xs btn-warning">连接</a>
                                         <a value="{% url 'asset_del' %}?id={{ asset.id }}" class="btn btn-xs btn-danger asset_del">删除</a>
-                                        <a href="{% url 'asset_option' %}?id={{ asset.id }}" type="button" class="btn btn-xs btn-primary">更多</a>
                                     </td>
                                 </tr>
                             {% endfor %}
