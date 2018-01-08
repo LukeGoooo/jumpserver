@@ -128,7 +128,7 @@
                 }
                 for(var i=0;i<responseText.Message.Services.length;i++){
                     var _name='<div class="box"><div class="md">'+responseText.Message.Services[i]+'</div>';
-                    var _select='<div class="md"><label><select class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择IP</option>';
+                    var _select='<div class="md"><label><select name="ips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择IP</option>';
                     var _option='';
                     for(var j=0;j<responseText.Message.IPs.length;j++){
                         _option+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j]+'</option>'
@@ -144,6 +144,7 @@
          **/ 
         function change_ip(event){
             console.log($(event.target).val());
+            console.log($(event.target).data("hostname"));
         }
         /**
          * 重启
