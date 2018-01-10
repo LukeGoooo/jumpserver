@@ -147,13 +147,18 @@
         });
         function onsublimt(){
             var _data={};
+            var _flage=false;
             $('select').each(function(index, Element){
                 if(''==$(this).val()){
                     alert('请选择'+$(this).data("hostname")+"服务对应的IP");
+                    _flage=true;
                     return false;
                 }
                 _data[$(this).data("hostname")]=$(this).val();
             })
+            if(_flage){
+                return;
+            }
             $.post('http://10.2.7.230:13380/api/monitor/saveservices', JSON.stringify(_data), function (data, status) {
                 alert("数据：" + data + "\n状态：" + status);
             });
