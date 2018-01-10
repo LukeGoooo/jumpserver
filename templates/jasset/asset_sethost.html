@@ -134,7 +134,7 @@
                     var _option='';
                     for(var j=0;j<responseText.Message.IPs.length;j++){
                         if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]==responseText.Message.IPs[j]){
-                            _option+='<option value="'+responseText.Message.IPs[j]+'" select>'+responseText.Message.IPs[j]+'</option>'
+                            _option+='<option value="'+responseText.Message.IPs[j]+'" selected>'+responseText.Message.IPs[j]+'</option>'
                         }else{
                             _option+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j]+'</option>'
                         }
