@@ -33,7 +33,7 @@
             <div class="ibox float-e-margins">
                 <div id="ibox-content" class="ibox-title">
                     <h5> 服务设置
-                        <input type="button" id="updateHost" class="btn btn-sm btn-primary" name="updateHost" value="更新">
+                        <input type="button" id="updateHost" style="margin-left: 15px;" class="btn btn-sm btn-primary" name="updateHost" value="更新" onclick="onsublimt()">
                     </h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
@@ -146,7 +146,9 @@
             });
         });
         function onsublimt(){
-
+            $('select').each( function(index, Element) ) {
+                console.log($(this).val());
+            }
         }
         /**
          * Ip下拉
