@@ -17,13 +17,13 @@
     .option .ibox-content .box .cl{
         clear: both;
         }
-    .option .ibox-content .box .md{ 
+    .option .ibox-content .box .md{
         width: 20%;
         float: left;
         height: 36px;
         line-height: 36px;
     }
-    .option .ibox-content .box .md:first-child{ 
+    .option .ibox-content .box .md:first-child{
         width: 40%;
     }
 </style>
@@ -32,7 +32,9 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div id="ibox-content" class="ibox-title">
-                    <h5> 服务设置 </h5>
+                    <h5> 服务设置
+                        <input type="button" id="updateHost" class="btn btn-sm btn-primary" name="updateHost" value="更新">
+                    </h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -122,7 +124,7 @@
                 }
                 responseText.data=[];
                 if(responseText && responseText.Code && 200 == responseText.Code){
-                    
+
                 }else{
                     return;
                 }
@@ -131,7 +133,11 @@
                     var _select='<div class="md"><label><select name="ips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择IP</option>';
                     var _option='';
                     for(var j=0;j<responseText.Message.IPs.length;j++){
-                        _option+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j]+'</option>'
+                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]==responseText.Message.IPs[j]){
+                            _option+='<option value="'+responseText.Message.IPs[j]+'" select>'+responseText.Message.IPs[j]+'</option>'
+                        }else{
+                            _option+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j]+'</option>'
+                        }
                     }
                     var _end='</select></label></div><div class="cl"></div></div>'
                     installStr+=_name+_select+_option+_end;
@@ -139,9 +145,12 @@
                 $('.infos').html(installStr);
             });
         });
+        function onsublimt(){
+
+        }
         /**
          * Ip下拉
-         **/ 
+         **/
         function change_ip(event){
             console.log($(event.target).val());
             console.log($(event.target).data("hostname"));
