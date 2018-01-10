@@ -149,7 +149,7 @@
             var _data={};
             $('select').each(function(index, Element){
                 if(''==$(this).val()){
-                    console.alert('请选择'+$(this).data("hostname")+"服务对应的IP");
+                    alert('请选择'+$(this).data("hostname")+"服务对应的IP");
                     return;
                 }
                 _data[$(this).data("hostname")]=$(this).val();
