@@ -177,7 +177,7 @@
             $.post('http://10.2.7.230:13380/api/monitor/saveservices', JSON.stringify(_parms), function (data, status) {
                 var responseText;
                 try {
-                    responseText = JSON.parse(result);
+                    responseText = JSON.parse(data);
                 } catch (error) {
                     responseText={};
                 }
