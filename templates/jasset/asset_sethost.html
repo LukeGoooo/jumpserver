@@ -165,7 +165,8 @@
                     _flage=true;
                     return false;
                 }
-                _data[$(this).data("hostname")]=$(this).val();
+                _data[$(this).data("hostname")]["ip"]=$(this).val();
+                _data[$(this).data("hostname")]["jump_ip"]=$("[name='ips']")[index].val();
             })
             if(_flage){
                 return;
