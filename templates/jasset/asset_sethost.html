@@ -133,7 +133,7 @@
                     var _selectip='<div class="md"><label><select name="ips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择IP</option>';
                     var _optionip='';
                     for(var j=0;j<responseText.Message.IPs.length;j++){
-                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]][ip]==responseText.Message.IPs[j]){
+                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]["ip"]==responseText.Message.IPs[j]){
                             _optionip+='<option value="'+responseText.Message.IPs[j]+'" selected>'+responseText.Message.IPs[j]+'</option>'
                         }else{
                             _optionip+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j]+'</option>'
@@ -143,7 +143,7 @@
                     var _selectjumpid='</select></label></div><div class="md"><label><select name="jumpips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择JumpIP</option>';
                     var _optionjumpip='';
                     for(var j=0;j<responseText.Message.IPs.length;j++){
-                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]][jump_ip]==responseText.Message.IPs[j]){
+                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]["jump_ip"]==responseText.Message.IPs[j]){
                             _optionjumpip+='<option value="'+responseText.Message.IPs[j]+'" selected>'+responseText.Message.IPs[j]+'</option>'
                         }else{
                             _optionjumpip+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j]+'</option>'
