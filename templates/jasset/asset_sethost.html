@@ -130,7 +130,7 @@
                 }
                 for(var i=0;i<responseText.Message.Services.length;i++){
                     var _name='<div class="box"><div class="md">'+responseText.Message.Services[i]+'</div>';
-                    var _selectip='<div class="md"><label><select class="ips" name="ips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择IP</option>';
+                    var _selectip='<div class="md"><label><select id="ips" name="ips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择IP</option>';
                     var _optionip='';
                     for(var j=0;j<responseText.Message.IPs.length;j++){
                         if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]["ip"]==responseText.Message.IPs[j]){
@@ -159,7 +159,7 @@
         function onsublimt(){
             var _data={};
             var _flage=false;
-            $('select.ips').each(function(index, Element){
+            $('#ips').each(function(index, Element){
                 if(''==$(this).val()){
                     alert('请选择'+$(this).data("hostname")+"服务对应的IP");
                     _flage=true;
