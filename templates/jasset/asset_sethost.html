@@ -175,7 +175,9 @@
             var _parms={};
             _parms.serviceToIP=_data;
             $.post('http://10.2.7.230:13380/api/monitor/saveservices', JSON.stringify(_parms), function (data, status) {
-                alert("数据：" + data + "\n状态：" + status);
+                if(data && 200==data.Code){
+                    window.location.reload();
+                }
             });
         }
         /**
