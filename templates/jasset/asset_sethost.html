@@ -175,7 +175,13 @@
             var _parms={};
             _parms.serviceToIP=_data;
             $.post('http://10.2.7.230:13380/api/monitor/saveservices', JSON.stringify(_parms), function (data, status) {
-                if(data && 200==data.Code){
+                var responseText;
+                try {
+                    responseText = JSON.parse(result);
+                } catch (error) {
+                    responseText={};
+                }
+                if(responseText && 200==responseText.Code){
                     window.location.reload();
                 }
             });
