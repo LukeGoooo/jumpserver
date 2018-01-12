@@ -67,6 +67,8 @@
         var originalData = "";
         $(document).ready(function () {
             console.log(getQueryString('name'));
+            console.log(getQueryString("redis"));
+            console.log(getQueryString('group'));
             $.get("https://raw.githubusercontent.com/MuFengGit/jumpserver/master/static/data/log.txt", function (result) {
                 $(".lo").html(result);
                 originalData = $(".lo").html();
@@ -76,20 +78,40 @@
          * 搜索
          **/
         function search() {
-            var searchKey = $("#keyword").val();
-            var searchArr = searchKey.replace(/，/g, ",").split(',');//替换中文'，'
-            searchArr = unique(searchArr);
-            var outputStr = originalData;
-            if (searchKey && '' != searchKey.trim()) {
-                for (var i = 0; i < searchArr.length; i++) {
-                    if ('' != searchArr[i]) {
-                        var values = outputStr.split(searchArr[i]);
-                        outputStr = values.join('<span class="bg">' + searchArr[i] + "</span>")
-                    }
+            if(getQueryString("redis")){
+                var _parms={};
+                _parms.group = getQueryString('group');
+                _parms.args = $("#keyword").val() || 'redis-traffic-stats -i eth1 -t 10';
+                
+                $.post('http://10.2.7.230:13380/api/monitor/redisstats', JSON.stringify(_parms), function (data, status) {
+                var responseText;
+                try {
+                    responseText = JSON.parse(data);
+                } catch (error) {
+                    responseText={};
                 }
-                $('.lo').html(outputStr);
-            } else {
-                $('.lo').html(originalData);
+                // if(responseText && 200==responseText.Code){
+                //     window.location.reload();
+                // }
+                console.log(responseText);
+            });
+            }
+            else{
+                var searchKey = $("#keyword").val();
+                var searchArr = searchKey.replace(/，/g, ",").split(',');//替换中文'，'
+                searchArr = unique(searchArr);
+                var outputStr = originalData;
+                if (searchKey && '' != searchKey.trim()) {
+                    for (var i = 0; i < searchArr.length; i++) {
+                        if ('' != searchArr[i]) {
+                            var values = outputStr.split(searchArr[i]);
+                            outputStr = values.join('<span class="bg">' + searchArr[i] + "</span>")
+                        }
+                    }
+                    $('.lo').html(outputStr);
+                } else {
+                    $('.lo').html(originalData);
+                }
             }
         }
         /**

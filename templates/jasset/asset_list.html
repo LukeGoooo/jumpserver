@@ -83,6 +83,7 @@
 
                             <a href="{% url 'asset_option' %}" id="hostInfo" style="margin-left:15px;margin-bottom:1px" type="button" class="btn btn-sm btn-primary">查看主机</a>
                             <a href="{% url 'asset_sethost' %}" id="hostSet" style="margin-left:15px;margin-bottom:1px" type="button" class="btn btn-sm btn-primary">设置</a>
+                            <a href="{% url 'asset_log' %}" id="redisInfo" style="margin-left:15px;margin-bottom:1px" type="button" class="btn btn-sm btn-primary">查看Redis</a>
                         </div>
 
                         <div class="col-sm-4" style="padding-right: 0">
@@ -166,11 +167,14 @@
         if(""==getQueryString("group") || null==getQueryString("group")){
             $("#hostInfo").css("display","none");
             $("#hostSet").css("display","none");
+            $("#redisInfo").css("display","none");
         }else{
             var oldinfoUrl = $("#hostInfo").attr('href');
             var oldsetUrl = $("#hostSet").attr('href');
+            var oldRedis = $("#redisInfo").attr("href");
             $("#hostInfo").attr('href',oldinfoUrl+"?group="+getQueryString("group"))
             $("#hostSet").attr('href',oldsetUrl+"?group="+getQueryString("group"))
+            $("#redisInfo").attr('href',oldRedis+"?group="+getQueryString("group")+"redis=true")
         }
         $('.asset_del').click(function(){
             var row = $(this).closest('tr');
