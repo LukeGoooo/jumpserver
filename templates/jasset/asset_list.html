@@ -174,7 +174,7 @@
             var oldRedis = $("#redisInfo").attr("href");
             $("#hostInfo").attr('href',oldinfoUrl+"?group="+getQueryString("group"))
             $("#hostSet").attr('href',oldsetUrl+"?group="+getQueryString("group"))
-            $("#redisInfo").attr('href',oldRedis+"?group="+getQueryString("group")+"redis=true")
+            $("#redisInfo").attr('href',oldRedis+"?group="+getQueryString("group")+"&redis=true")
         }
         $('.asset_del').click(function(){
             var row = $(this).closest('tr');
