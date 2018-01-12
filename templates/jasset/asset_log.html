@@ -65,6 +65,7 @@
 {% block self_footer_js %}
 <script>
         var originalData = "";
+        var singlePoint=true;
         $(document).ready(function () {
             console.log(getQueryString('name'));
             console.log(getQueryString("redis"));
@@ -78,11 +79,17 @@
          * 搜索
          **/
         function search() {
+            if(!singlePoint){
+
+            }
             if(getQueryString("redis")){
+                singlePoint=false;
                 var _parms={};
                 _parms.group = getQueryString('group');
                 _parms.args = $("#keyword").val() || 'redis-traffic-stats -i eth1 -t 10';
-                
+                setTimeout(function(){
+                    singlePoint=true;
+                }, 5000);
                 $.post('http://10.2.7.230:13380/api/monitor/redisstats', JSON.stringify(_parms), function (data, status) {
                 var responseText;
                 try {
@@ -93,7 +100,7 @@
                 // if(responseText && 200==responseText.Code){
                 //     window.location.reload();
                 // }
-                console.log(responseText);
+                // console.log(responseText);
                 $(".lo").html(responseText.Message);
             });
             }
