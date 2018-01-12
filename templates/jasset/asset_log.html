@@ -41,7 +41,7 @@
                     <div class="searchs">
                         <div class="" style="float: right">
                             <div class="input-group" style="width: 360px;">
-                                <input type="text" class="form-control input-sm" id="keyword" name="keyword" value="" placeholder="请输入关键字搜索">
+                                <input type="text" class="form-control input-sm" id="keyword" name="keyword" value="" placeholder="redis-traffic-stats -i eth1 -t 10">
                                 <div class="input-group-btn">
                                     <button id="search_btn" type="submit" class="btn btn-sm btn-primary" onclick="search()">
                                         -搜索-
@@ -80,7 +80,7 @@
          **/
         function search() {
             if(!singlePoint){
-
+                return;
             }
             if(getQueryString("redis")){
                 singlePoint=false;
