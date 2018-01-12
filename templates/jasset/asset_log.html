@@ -67,13 +67,13 @@
         var originalData = "";
         var singlePoint=true;
         $(document).ready(function () {
-            console.log(getQueryString('name'));
-            console.log(getQueryString("redis"));
-            console.log(getQueryString('group'));
-            $.get("https://raw.githubusercontent.com/MuFengGit/jumpserver/master/static/data/log.txt", function (result) {
-                $(".lo").html(result);
-                originalData = $(".lo").html();
-            });
+            // console.log(getQueryString('name'));
+            // console.log(getQueryString("redis"));
+            // console.log(getQueryString('group'));
+            // $.get("https://raw.githubusercontent.com/MuFengGit/jumpserver/master/static/data/log.txt", function (result) {
+            //     $(".lo").html(result);
+            //     originalData = $(".lo").html();
+            // });
         });
         /**
          * 搜索
@@ -87,11 +87,11 @@
                 var _parms={};
                 _parms.group = getQueryString('group');
                 _parms.args = $("#keyword").val() || 'redis-traffic-stats -i eth1 -t 10';
-                setTimeout(function(){
-                    singlePoint=true;
-                }, 5000);
                 $.post('http://10.2.7.230:13380/api/monitor/redisstats', JSON.stringify(_parms), function (data, status) {
                 var responseText;
+                setTimeout(function(){
+                    singlePoint=true;
+                }, 1000);
                 try {
                     responseText = JSON.parse(data);
                 } catch (error) {
