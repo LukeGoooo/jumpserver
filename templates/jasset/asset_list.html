@@ -166,8 +166,8 @@
     $(document).ready(function(){
         if(""==getQueryString("group") || null==getQueryString("group")){
         }else{
-            $("#hostSet").css("display","block");
-            $("#redisInfo").css("display","block");
+            $("#hostSet").css("display","inline-block");
+            $("#redisInfo").css("display","inline-block");
             var oldinfoUrl = $("#hostInfo").attr('href');
             var oldsetUrl = $("#hostSet").attr('href');
             var oldRedis = $("#redisInfo").attr("href");
