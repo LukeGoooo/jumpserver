@@ -80,6 +80,10 @@
                                     {% endfor %}
                                 </select>
                             </label>
+
+                            <a href="{% url 'asset_option' %}" id="hostInfo" style="margin-left:15px;margin-bottom:1px;display:none;width: 80px;" type="button" class="btn btn-sm btn-primary">查看主机</a>
+                            <a href="{% url 'asset_sethost' %}" id="hostSet" style="margin-left:15px;margin-bottom:1px;display:none;width: 80px;" type="button" class="btn btn-sm btn-primary">设置</a>
+                            <a href="{% url 'asset_log' %}" id="redisInfo" style="margin-left:15px;margin-bottom:1px;display:none;width: 80px;" type="button" class="btn btn-sm btn-primary">查看Redis</a>
                         </div>
 
                         <div class="col-sm-4" style="padding-right: 0">
@@ -160,6 +164,17 @@
 {% block self_footer_js %}
 <script>
     $(document).ready(function(){
+        if(""==getQueryString("group") || null==getQueryString("group")){
+        }else{
+            $("#hostSet").css("display","inline-block");
+            $("#redisInfo").css("display","inline-block");
+            var oldinfoUrl = $("#hostInfo").attr('href');
+            var oldsetUrl = $("#hostSet").attr('href');
+            var oldRedis = $("#redisInfo").attr("href");
+            $("#hostInfo").attr('href',oldinfoUrl+"?group="+getQueryString("group"))
+            $("#hostSet").attr('href',oldsetUrl+"?group="+getQueryString("group"))
+            $("#redisInfo").attr('href',oldRedis+"?group="+getQueryString("group")+"&redis=true")
+        }
         $('.asset_del').click(function(){
             var row = $(this).closest('tr');
             if (confirm("确定删除?")) {
@@ -276,7 +291,17 @@
             return false
         });
     });
-
+    /**
+     * 获取参数
+     **/
+        function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
     function windowOpen(a){
         var new_url = $(a).attr('href');
         var hostname = $(a).attr('value');

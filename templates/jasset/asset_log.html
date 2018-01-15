@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load mytags %}
+{% load bootstrap %}
+{% block content %}
+{% include 'nav_cat_bar.html' %}
+<style>
+    .searchs{
+        height: 40px;
+        width: 100%;
+    }
+    .clb{
+        clear: both;
+    }
+    span.bg{
+        background: yellow;
+    }
+    span.err{
+        background: red;
+    }
+</style>
+<div class="wrapper wrapper-content animated fadeInRight logs">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div id="ibox-content" class="ibox-title">
+                    <h5> 日志 </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ibox-content">
+                    <div class="searchs">
+                        <div class="" style="float: right">
+                            <div class="input-group" style="width: 360px;">
+                                <input type="text" class="form-control input-sm" id="keyword" name="keyword" value="" placeholder="redis-traffic-stats -i eth1 -t 10">
+                                <div class="input-group-btn">
+                                    <button id="search_btn" type="submit" class="btn btn-sm btn-primary" onclick="search()">
+                                        -搜索-
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                    <div class="log">
+                        <pre class="lo">
+                        </pre>
+                    </div> 
+                    <div class="clb"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block self_footer_js %}
+<script>
+        var originalData = "";
+        var singlePoint=true;
+        $(document).ready(function () {
+            // console.log(getQueryString('name'));
+            // console.log(getQueryString("redis"));
+            // console.log(getQueryString('group'));
+            // $.get("https://raw.githubusercontent.com/MuFengGit/jumpserver/master/static/data/log.txt", function (result) {
+            //     $(".lo").html(result);
+            //     originalData = $(".lo").html();
+            // });
+        });
+        /**
+         * 搜索
+         **/
+        function search() {
+            if(!singlePoint){
+                return;
+            }
+            if(getQueryString("redis")){
+                singlePoint=false;
+                var _parms={};
+                _parms.group = getQueryString('group');
+                _parms.args = $("#keyword").val() || 'redis-traffic-stats -i eth1 -t 10';
+                $.post('http://10.2.7.230:13380/api/monitor/redisstats', JSON.stringify(_parms), function (data, status) {
+                var responseText;
+                setTimeout(function(){
+                    singlePoint=true;
+                }, 1000);
+                try {
+                    responseText = JSON.parse(data);
+                } catch (error) {
+                    responseText={};
+                }
+                // if(responseText && 200==responseText.Code){
+                //     window.location.reload();
+                // }
+                // console.log(responseText);
+                $(".lo").html(responseText.Message);
+            });
+            }
+            else{
+                var searchKey = $("#keyword").val();
+                var searchArr = searchKey.replace(/，/g, ",").split(',');//替换中文'，'
+                searchArr = unique(searchArr);
+                var outputStr = originalData;
+                if (searchKey && '' != searchKey.trim()) {
+                    for (var i = 0; i < searchArr.length; i++) {
+                        if ('' != searchArr[i]) {
+                            var values = outputStr.split(searchArr[i]);
+                            outputStr = values.join('<span class="bg">' + searchArr[i] + "</span>")
+                        }
+                    }
+                    $('.lo').html(outputStr);
+                } else {
+                    $('.lo').html(originalData);
+                }
+            }
+        }
+        /**
+         * 绑定回车搜索
+         **/
+        $('#keyword').bind('keyup', function (event) {
+            if (event.keyCode == "13") {
+                search();
+            }
+        });
+        /**
+         * 获取参数
+         **/
+        function getQueryString(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
+        /**
+         * 数组去重
+         **/
+        function unique(array) {
+            var r = [];
+            for (var i = 0, l = array.length; i < l; i++) {
+                for (var j = i + 1; j < l; j++)
+                    if (array[i] === array[j]) j = ++i;
+                r.push(array[i]);
+            }
+            return r;
+        }
+</script>
+
+{% endblock %}

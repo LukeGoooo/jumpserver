@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load mytags %}
+{% load bootstrap %}
+{% block content %}
+{% include 'nav_cat_bar.html' %}
+<style>
+    .wrapper-content{
+        padding-top: 0;
+    }
+    .option .ibox-content .box{
+        border-bottom: 1px dashed #ccc;
+        padding: 5px;
+    }
+    .option .ibox-content .box a{
+        text-decoration: none;
+    }
+    .option .ibox-content .box .cl{
+        clear: both;
+        }
+    .option .ibox-content .box .md{
+        width: 20%;
+        float: left;
+        height: 36px;
+        line-height: 36px;
+    }
+    .option .ibox-content .box .md:first-child{
+        width: 40%;
+    }
+</style>
+<div class="wrapper wrapper-content animated fadeInRight option">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div id="ibox-content" class="ibox-title">
+                    <h5> 服务设置
+                        <input type="button" id="updateHost" style="margin-left: 15px;" class="btn btn-sm btn-primary" name="updateHost" value="更新" onclick="onsublimt()">
+                    </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ibox-content infos">
+                    <div class="box">
+                        <div class="md">nlp</div>
+                        <div class="md">
+                            <label>
+                                <select name="ips" class="form-control m-b input-sm" data-hostname="nlp" onchange="change_ip(event)">
+                                    <option value="">请选择IP</option>
+                                    <option value="192.168.1.25" > 192.168.1.25</option>
+                                    <option value="114.55.56.6"> 114.55.56.6</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="cl"></div>
+                    </div>
+                    <div class="box">
+                        <div class="md">elasticsearch</div>
+                        <div class="md">
+                            <label>
+                                <select name="ips" class="form-control m-b input-sm" data-hostname="elasticsearch" onchange="change_ip(event)">
+                                    <option value="">请选择IP</option>
+                                    <option value="192.168.1.25" > 192.168.1.25</option>
+                                    <option value="114.55.56.6"> 114.55.56.6</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="cl"></div>
+                    </div>
+                    <div class="box">
+                        <div class="md">vms</div>
+                        <div class="md">
+                            <label>
+                                <select name="ips" class="form-control m-b input-sm" data-hostname="vms" onchange="change_ip(event)">
+                                    <option value="">请选择IP</option>
+                                    <option value="192.168.1.25" > 192.168.1.25</option>
+                                    <option value="114.55.56.6"> 114.55.56.6</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="cl"></div>
+                    </div>
+                    <div class="box">
+                        <div class="md">redis</div>
+                        <div class="md">
+                            <label>
+                                <select name="ips" class="form-control m-b input-sm" data-hostname="redis" onchange="change_ip(event)">
+                                    <option value="">请选择IP</option>
+                                    <option value="192.168.1.25" > 192.168.1.25</option>
+                                    <option value="114.55.56.6"> 114.55.56.6</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="cl"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block self_footer_js %}
+<script>
+        $(document).ready(function () {
+            console.log(getQueryString('group'));
+            $.get("http://10.2.7.230:13380/api/monitor/getservices?group="+getQueryString('group'), function (result) {
+                var installStr='';
+                var responseText={};
+                var list={};
+                try {
+                    responseText = JSON.parse(result);
+                } catch (e) {
+                    responseText = {};
+                }
+                responseText.data=[];
+                if(responseText && responseText.Code && 200 == responseText.Code){
+
+                }else{
+                    return;
+                }
+                for(var i=0;i<responseText.Message.Services.length;i++){
+                    var _name='<div class="box"><div class="md">'+responseText.Message.Services[i]+'</div>';
+                    var _selectip='<div class="md"><label><select name="ips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择IP</option>';
+                    var _optionip='';
+                    for(var j=0;j<responseText.Message.IPs.length;j++){
+                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]["ip"]==responseText.Message.IPs[j]){
+                            _optionip+='<option value="'+responseText.Message.IPs[j]+'" selected>'+responseText.Message.IPs[j]+'</option>'
+                        }else{
+                            _optionip+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j]+'</option>'
+                        }
+                    }
+
+                    var _selectjumpid='</select></label></div><div class="md"><label><select name="jumpips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择JumpIP</option>';
+                    var _optionjumpip='';
+                    for(var j=0;j<responseText.Message.IPs.length;j++){
+                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]["jump_ip"]==responseText.Message.IPs[j]){
+                            _optionjumpip+='<option value="'+responseText.Message.IPs[j]+'" selected>'+responseText.Message.IPs[j]+'</option>'
+                        }else{
+                            _optionjumpip+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j]+'</option>'
+                        }
+                    }
+                    var _end='</select></label></div><div class="cl"></div></div>';
+
+                    installStr+=_name+_selectip+_optionip+_selectjumpid+_optionjumpip+_end;
+                }
+                $('.infos').html(installStr);
+            });
+        });
+        function onsublimt(){
+            var _data={};
+            var _flage=false;
+            $("[name='ips']").each(function(index, Element){
+                if(''==$(this).val()){
+                    alert('请选择'+$(this).data("hostname")+"服务对应的IP");
+                    _flage=true;
+                    return false;
+                }
+                _data[$(this).data("hostname")]={};
+                _data[$(this).data("hostname")]["ip"]=$(this).val();
+                _data[$(this).data("hostname")]["jump_ip"]=$($("[name='jumpips']")[index]).val();
+            })
+            if(_flage){
+                return;
+            }
+            var _parms={};
+            _parms.serviceToIP=_data;
+            $.post('http://10.2.7.230:13380/api/monitor/saveservices', JSON.stringify(_parms), function (data, status) {
+                var responseText;
+                try {
+                    responseText = JSON.parse(data);
+                } catch (error) {
+                    responseText={};
+                }
+                if(responseText && 200==responseText.Code){
+                    window.location.reload();
+                }
+            });
+        }
+        /**
+         * Ip下拉
+         **/
+        function change_ip(event){
+            console.log($(event.target).val());
+            console.log($(event.target).data("hostname"));
+        }
+        /**
+         * 重启
+         **/
+        function reboot(id) {
+            console.log("+++"+id);
+            var r = confirm("确认重启？");
+            if (r == true) {
+                var url = "";
+                var parms = {};
+                $.post(url, parms, function (data, status) {
+                    alert("数据：" + data + "\n状态：" + status);
+                });
+            } else {
+            }
+        }
+        /**
+         * 获取参数
+         **/
+        function getQueryString(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
+</script>
+
+{% endblock %}

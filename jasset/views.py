@@ -166,6 +166,17 @@ def asset_add(request):
 
     return my_render('jasset/asset_add.html', locals(), request)
 
+@require_role('admin')
+def asset_log(request):
+    """
+    Asset add view
+    查看日志
+    """
+    header_title, path1, path2 = u'查看日志', u'资产管理', u'查看日志'
+    
+
+    return my_render('jasset/asset_log.html', locals(), request)
+
 
 @require_role('admin')
 def asset_add_batch(request):
@@ -430,6 +441,25 @@ def asset_edit_batch(request):
 
     return my_render('jasset/asset_edit_batch.html', locals(), request)
 
+@require_role('admin')
+def asset_option(request):
+    """
+    Asset add view
+    服务信息
+    """
+    header_title, path1, path2 = u'服务信息', u'资产管理', u'服务信息'
+
+    return my_render('jasset/asset_option.html', locals(), request)
+
+@require_role('admin')
+def asset_sethost(request):
+    """
+    Asset add view
+    服务设置
+    """
+    header_title, path1, path2 = u'服务设置', u'资产管理', u'服务设置'
+
+    return my_render('jasset/asset_sethost.html', locals(), request)
 
 @require_role('admin')
 def asset_detail(request):
