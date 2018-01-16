@@ -24,6 +24,9 @@
         background: black;
         opacity: 0.8;
         z-index: 1000;
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 
     @-webkit-keyframes rotate_pacman_half_up {
@@ -84,8 +87,12 @@
     -webkit-transform: translate(-100px, -6.25px);
             transform: translate(-100px, -6.25px); } }
 
-.pacman {
-  position: relative; }
+    .pacman {
+        position: relative; 
+        position: fixed;
+        left: 50%;
+        top: 50%;
+    }
   .pacman > div:nth-child(2) {
     -webkit-animation: pacman-balls 1s -0.99s infinite linear;
             animation: pacman-balls 1s -0.99s infinite linear; }
