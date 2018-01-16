@@ -49,58 +49,7 @@
                 </div>
 
                 <div class="ibox-content infos">
-                    <div class="box">
-                        <div class="md">nlp</div>
-                        <div class="md">
-                            <label>
-                                <select name="ips" class="form-control m-b input-sm" data-hostname="nlp" onchange="change_ip(event)">
-                                    <option value="">请选择IP</option>
-                                    <option value="192.168.1.25" > 192.168.1.25</option>
-                                    <option value="114.55.56.6"> 114.55.56.6</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="cl"></div>
-                    </div>
-                    <div class="box">
-                        <div class="md">elasticsearch</div>
-                        <div class="md">
-                            <label>
-                                <select name="ips" class="form-control m-b input-sm" data-hostname="elasticsearch" onchange="change_ip(event)">
-                                    <option value="">请选择IP</option>
-                                    <option value="192.168.1.25" > 192.168.1.25</option>
-                                    <option value="114.55.56.6"> 114.55.56.6</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="cl"></div>
-                    </div>
-                    <div class="box">
-                        <div class="md">vms</div>
-                        <div class="md">
-                            <label>
-                                <select name="ips" class="form-control m-b input-sm" data-hostname="vms" onchange="change_ip(event)">
-                                    <option value="">请选择IP</option>
-                                    <option value="192.168.1.25" > 192.168.1.25</option>
-                                    <option value="114.55.56.6"> 114.55.56.6</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="cl"></div>
-                    </div>
-                    <div class="box">
-                        <div class="md">redis</div>
-                        <div class="md">
-                            <label>
-                                <select name="ips" class="form-control m-b input-sm" data-hostname="redis" onchange="change_ip(event)">
-                                    <option value="">请选择IP</option>
-                                    <option value="192.168.1.25" > 192.168.1.25</option>
-                                    <option value="114.55.56.6"> 114.55.56.6</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="cl"></div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -197,6 +146,7 @@
          * 重启
          **/
         function reboot(id) {
+            return;
             console.log("+++"+id);
             var r = confirm("确认重启？");
             if (r == true) {
