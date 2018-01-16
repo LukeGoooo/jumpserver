@@ -99,7 +99,8 @@
                             break;
                     }
                     var _reboot='<div class="md"><a href="javascipt:void(0);" class="btn btn-sm btn-danger" onclick="reboot(\''+responseText.data[i].name+'\')">一键重启</a></div>';
-                    var _log='<div class="md"><a href='+"{% url 'asset_log' %}?name="+responseText.data[i].name+' '+'class="btn btn-sm btn-primary ">查看日志</a></div><div class="cl"></div></div>'
+                    // var _log='<div class="md"><a href='+"{% url 'asset_log' %}?name="+responseText.data[i].name+' '+'class="btn btn-sm btn-primary ">查看日志</a></div><div class="cl"></div></div>'
+                    var _log='<div class="md"><a href="javascript:void(0)" class="btn btn-sm btn-primary ">查看日志</a></div><div class="cl"></div></div>'
                     installStr+=_name+_status+_reboot+_log;
                 }
                 $('.infos').html(installStr);
@@ -109,6 +110,7 @@
          * 重启
          **/
         function reboot(id) {
+            return;
             console.log("+++"+id);
             var r = confirm("确认重启？");
             if (r == true) {
