@@ -61,8 +61,11 @@
 {% block self_footer_js %}
 <script>
         $(document).ready(function () {
-            console.log(getQueryString('group'));
-            $.get("XXXX/api/monitor/getservices?group="+getQueryString('group'), function (result) {
+            var host=window.localStorage.getItem("host");
+            if(!host){
+                return;
+            }
+            $.get(host+"/api/monitor/getservices?group="+getQueryString('group'), function (result) {
                 var installStr='';
                 var responseText={};
                 var list={};
