@@ -85,20 +85,20 @@
                     var _selectip='<div class="md"><label><select style="max-width:110px" name="ips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择IP</option>';
                     var _optionip='';
                     for(var j=0;j<responseText.Message.IPs.length;j++){
-                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]["ip"]==responseText.Message.IPs[j].split("$")[0]){
-                            _optionip+='<option value="'+responseText.Message.IPs[j].split("$")[0]+'" selected>'+responseText.Message.IPs[j].split("$")[0]+' '+responseText.Message.IPs[j].split("$")[1]+'</option>'
+                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]["ip"]==responseText.Message.IPs[j]){
+                            _optionip+='<option value="'+responseText.Message.IPs[j]+'" selected>'+responseText.Message.IPs[j].split("$")[0]+' '+responseText.Message.IPs[j].split("$")[1]+'</option>'
                         }else{
-                            _optionip+='<option value="'+responseText.Message.IPs[j].split("$")[0]+'" >'+responseText.Message.IPs[j].split("$")[0]+' '+responseText.Message.IPs[j].split("$")[1]+'</option>'
+                            _optionip+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j].split("$")[0]+' '+responseText.Message.IPs[j].split("$")[1]+'</option>'
                         }
                     }
 
                     var _selectjumpid='</select></label></div><div class="md"><label><select name="jumpips" data-hostname="'+responseText.Message.Services[i]+'" class="form-control m-b input-sm" onchange="change_ip(event)"><option value="">请选择JumpIP</option>';
                     var _optionjumpip='';
                     for(var j=0;j<responseText.Message.IPs.length;j++){
-                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]["jump_ip"]==responseText.Message.IPs[j].split("$")[0]){
-                            _optionjumpip+='<option value="'+responseText.Message.IPs[j].split("$")[0]+'" selected>'+responseText.Message.IPs[j].split("$")[0]+' '+responseText.Message.IPs[j].split("$")[1]+'</option>'
+                        if(responseText.Message.ServicesInfo[responseText.Message.Services[i]]["jump_ip"]==responseText.Message.IPs[j]){
+                            _optionjumpip+='<option value="'+responseText.Message.IPs[j]+'" selected>'+responseText.Message.IPs[j].split("$")[0]+' '+responseText.Message.IPs[j].split("$")[1]+'</option>'
                         }else{
-                            _optionjumpip+='<option value="'+responseText.Message.IPs[j].split("$")[0]+'" >'+responseText.Message.IPs[j].split("$")[0]+' '+responseText.Message.IPs[j].split("$")[1]+'</option>'
+                            _optionjumpip+='<option value="'+responseText.Message.IPs[j]+'" >'+responseText.Message.IPs[j].split("$")[0]+' '+responseText.Message.IPs[j].split("$")[1]+'</option>'
                         }
                     }
                     var _end='</select></label></div><div class="cl"></div></div>';
