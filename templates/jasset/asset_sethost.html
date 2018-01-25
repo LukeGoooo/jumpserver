@@ -126,6 +126,7 @@
             }
             var _parms={};
             _parms.serviceToIP=_data;
+            _parms.group=getQueryString('group');
             $.post(host+'/api/monitor/saveservices', JSON.stringify(_parms), function (data, status) {
                 var responseText;
                 try {
