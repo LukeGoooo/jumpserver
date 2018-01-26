@@ -47,7 +47,8 @@
                         </a>
                     </div>
                 </div>
-
+                <div class="alert alert-success text-center" id="su" style="display: none;margin-top: 10px;">修改成功 :)</div>
+                <div class="alert alert-danger text-center" id="fi" style="display: none;margin-top: 10px;">修改成功 :(</div>
                 <div class="ibox-content infos">
                     
                 </div>
@@ -135,7 +136,15 @@
                     responseText={};
                 }
                 if(responseText && 200==responseText.Code){
-                    window.location.reload();
+                    $("#su").css("display","block");
+                    setTimeout(function() {
+                        $("#su").css("display","none");
+                    }, 1500);
+                }else{
+                    $("#fi").css("display","block");
+                    setTimeout(function() {
+                        $("#fi").css("display","none");
+                    }, 1500);
                 }
             });
         }
