@@ -227,7 +227,11 @@
                 var _parms={};
                 _parms.group = getQueryString('group');
                 _parms.args = $("#keyword").val() || 'redis-traffic-stats -i eth1 -t 10';
-                $.post('XXX/api/monitor/redisstats', JSON.stringify(_parms), function (data, status) {
+                var host=window.localStorage.getItem("host");
+                if(!host){
+                    return;
+                }
+                $.post(host+'/api/monitor/redisstats', JSON.stringify(_parms), function (data, status) {
                 var responseText;
                 setTimeout(function(){
                     singlePoint=true;
@@ -278,7 +282,7 @@
             var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
             var r = window.location.search.substr(1).match(reg);
             if (r != null) {
-                return unescape(r[2]);
+                return decodeURI(r[2]);
             }
             return null;
         }

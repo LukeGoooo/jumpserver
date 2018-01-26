@@ -59,8 +59,11 @@
 {% block self_footer_js %}
 <script>
         $(document).ready(function () {
-            console.log(getQueryString('group'));
-            $.get("XXXX/api/monitor/checkstatus?group="+getQueryString('group'), function (result) {
+            var host=window.localStorage.getItem("host");
+            if(!host){
+                return;
+            }
+            $.get(host+"/api/monitor/checkstatus?group="+getQueryString('group'), function (result) {
                 var installStr='';
                 var responseText={};
                 var list={};
@@ -129,7 +132,7 @@
             var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
             var r = window.location.search.substr(1).match(reg);
             if (r != null) {
-                return unescape(r[2]);
+                return decodeURI(r[2]);
             }
             return null;
         }

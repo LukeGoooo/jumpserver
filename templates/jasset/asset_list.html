@@ -43,7 +43,7 @@
                             </label>
 
                             <label>
-                                <select name="group" class="form-control m-b input-sm" onchange="change_info()">
+                                <select name="group" class="form-control m-b input-sm" style="max-width: 109px;" onchange="change_info()">
                                     <option value="">主机组</option>
                                     {% for asset_group in asset_group_all %}
                                         {% ifequal asset_group.name group_name %}
@@ -299,7 +299,7 @@
         var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
         var r = window.location.search.substr(1).match(reg);
         if (r != null) {
-            return unescape(r[2]);
+            return decodeURI(r[2]);
         }
         return null;
     }
